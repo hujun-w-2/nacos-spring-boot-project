@@ -16,8 +16,11 @@
  */
 package com.alibaba.boot.nacos.sample;
 
+import ch.qos.logback.core.util.TimeUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:fangjian0423@gmail.com">Jim</a>
@@ -27,6 +30,7 @@ public class DiscoveryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DiscoveryApplication.class, args);
+
 	}
 
 }

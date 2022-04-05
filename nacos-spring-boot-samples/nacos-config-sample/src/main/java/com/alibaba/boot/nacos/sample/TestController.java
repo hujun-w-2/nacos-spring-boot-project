@@ -16,8 +16,12 @@
  */
 package com.alibaba.boot.nacos.sample;
 
+import com.alibaba.nacos.api.annotation.NacosInjected;
+import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 
+import com.alibaba.nacos.api.exception.NacosException;
+import com.alibaba.nacos.client.config.NacosConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -25,6 +29,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author <a href="mailto:liaochunyhm@live.com">liaochuntao</a>
@@ -35,30 +42,14 @@ public class TestController {
 
 	@NacosValue(value = "${people.enable:bbbbb}", autoRefreshed = true)
 	private String enable;
-
-	@Value("${people.enable:}")
-	private String springEnable;
-
-	@Autowired
-	private Apple apple;
-
-	@Autowired
-	private TestConfiguration configuration;
+	@NacosInjected
+	private ConfigService nacosConfigService;
 
 	@Scheduled(cron = "0/10 * * * * *")
-	public void print() {
-		System.out.println(configuration.getCount());
-	}
-
-	@RequestMapping()
-	@ResponseBody
-	public String testGet() {
-		return enable + "-" + springEnable;
-	}
-
-	@GetMapping("/apple")
-	public String getApplr() {
-		return apple.toString();
+	public void print() throws NacosException {
+		System.out.println(enable);
+		nacosConfigService.publishConfig("cipher-Blowfish-test3","DEFAULT_GROUP","people.enable=content"+
+				Math.random());
 	}
 
 }
