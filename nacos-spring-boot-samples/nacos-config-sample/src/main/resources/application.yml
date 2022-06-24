@@ -1,0 +1,19 @@
+nacos:
+  config:
+    bootstrap:
+      enable: true
+    server-addr: http://dev-nacos.api.xiaomi.net:80
+    remote-first: true
+    data-ids: people,test
+    #nacos.config.namespace=nacos-dev
+    #    group: DEVELOP
+    type: yaml
+    auto-refresh: true
+    username: nacos
+    password: nacos
+    enable-remote-sync-config: true
+    max-retry: 10
+    config-retry-time: 2000
+    config-long-poll-timeout: 10000
+server:
+  port: 8584
