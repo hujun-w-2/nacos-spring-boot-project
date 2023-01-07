@@ -1,1 +1,1 @@
-com.alibaba.boot.nacos.discovery.NativeNacosDiscoveryAutoConfiguration
+com.alibaba.boot.nacos.discovery.autoconfigure.NacosDiscoveryAutoConfiguration
