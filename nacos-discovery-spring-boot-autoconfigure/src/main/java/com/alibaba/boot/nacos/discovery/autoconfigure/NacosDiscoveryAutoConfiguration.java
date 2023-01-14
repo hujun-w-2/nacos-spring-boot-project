@@ -18,6 +18,7 @@ package com.alibaba.boot.nacos.discovery.autoconfigure;
 
 import com.alibaba.boot.nacos.discovery.NacosDiscoveryConstants;
 import com.alibaba.boot.nacos.discovery.natives.DiscoveryRuntimeHints;
+import com.alibaba.boot.nacos.discovery.natives.NacosDiscoveryBeanConfiguration;
 import com.alibaba.boot.nacos.discovery.properties.NacosDiscoveryProperties;
 import com.alibaba.nacos.spring.context.annotation.discovery.EnableNacosDiscovery;
 
@@ -27,6 +28,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportRuntimeHints;
 
 import static com.alibaba.nacos.spring.util.NacosBeanUtils.DISCOVERY_GLOBAL_NACOS_PROPERTIES_BEAN_NAME;
@@ -42,6 +44,7 @@ import static com.alibaba.nacos.spring.util.NacosBeanUtils.DISCOVERY_GLOBAL_NACO
 @EnableNacosDiscovery
 @ConditionalOnClass(name = "org.springframework.boot.context.properties.bind.Binder")
 @ImportRuntimeHints(DiscoveryRuntimeHints.class)
+@Import(NacosDiscoveryBeanConfiguration.class)
 public class NacosDiscoveryAutoConfiguration {
 
 	@Bean
